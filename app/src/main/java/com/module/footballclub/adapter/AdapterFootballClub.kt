@@ -8,18 +8,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.module.footballclub.R
 import com.module.footballclub.model.FootballClub
-import com.module.footballclub.ui_anko.ItemFootballUI
-import kotlinx.android.extensions.LayoutContainer
-import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.*
 
 class AdapterFootballClub(var context: Context, var list: MutableList<FootballClub> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballViewHolder {
-        return FootballViewHolder(ItemFootballUI().createView(AnkoContext.create(parent.context, parent)))
+        return FootballViewHolder(ItemList().createView(AnkoContext.create(parent.context, parent)))
     }
 
     override fun onBindViewHolder(holder: FootballViewHolder, position: Int) {
@@ -38,8 +38,8 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
         var ivPhotoId: ImageView
 
         init {
-            tvTitle = itemView.findViewById(ItemFootballUI.tvTitleId)
-            ivPhotoId = itemView.findViewById(ItemFootballUI.ivPhotoId)
+            tvTitle = itemView.find(R.id.img_football)
+            ivPhotoId = itemView.find(R.id.name_football)
         }
 
     }
@@ -55,6 +55,36 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
             })
         } catch (e: Exception) {
         }
+
+    }
+
+    class ItemList : AnkoComponent<ViewGroup> {
+
+        override fun createView(ui: AnkoContext<ViewGroup>): View {
+            return with(ui){
+                linearLayout {
+                    lparams(width = matchParent, height = wrapContent)
+                    padding = dip(16)
+                    orientation = LinearLayout.HORIZONTAL
+
+                    imageView {
+                        id = R.id.img_football
+                    }.lparams{
+                        height = dip(50)
+                        width = dip(50)
+                    }
+
+                    textView {
+                        id = R.id.name_football
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(15)
+                    }
+
+                }
+            }
+        }
+
 
     }
 }

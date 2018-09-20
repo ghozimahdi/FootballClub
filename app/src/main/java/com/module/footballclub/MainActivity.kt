@@ -37,34 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     class MainActivityUI(var listAdapter: AdapterFootballClub) : AnkoComponent<MainActivity> {
         override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
-            return frameLayout {
-                // LIST
-                val list = recyclerView {
-                    val orientation = LinearLayoutManager.VERTICAL
-                    layoutManager = LinearLayoutManager(context, orientation, true)
-                    overScrollMode = View.OVER_SCROLL_NEVER
+            return verticalLayout {
+                recyclerView {
+                    lparams(width = matchParent, height = wrapContent)
+                    layoutManager = LinearLayoutManager(ctx)
                     adapter = listAdapter
-                    adapter.registerAdapterDataObserver(
-                            object : RecyclerView.AdapterDataObserver() {
-                                override fun onItemRangeInserted(start: Int, count: Int) {
-
-                                }
-
-                                override fun onItemRangeRemoved(start: Int, count: Int) {
-
-                                }
-                            })
-
-                }.lparams(width = matchParent, height = wrapContent) {
-
                 }
-            }.apply {
-                layoutParams = FrameLayout.LayoutParams(matchParent, matchParent)
-                        .apply {
-                            /*leftMargin = dip(16)
-                            rightMargin = dip(16)
-                            bottomMargin = dip(16)*/
-                        }
             }
         }
     }

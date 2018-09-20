@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="id1" type="id" />
-    <item name="id2" type="id" />
+    <item name="img_football" type="id" />
+    <item name="name_football" type="id" />
     <item name="id3" type="id" />
     <item name="id4" type="id" />
     <item name="id5" type="id" />
