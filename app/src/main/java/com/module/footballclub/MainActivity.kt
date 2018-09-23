@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         items.clear()
         for (i in name.indices) {
             items.add(FootballClub(name[i],
-                    image.getResourceId(i, 0)))
+                    image.getResourceId(i, 0), resources.getString(R.string.long_lorem_ipsum)))
         }
 
         //Recycle the typed array
@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity() {
                     lparams(width = matchParent, height = wrapContent)
                     layoutManager = LinearLayoutManager(ctx)
                     adapter = listAdapter
+                    listAdapter.setOnClickListener(object : AdapterFootballClub.OnClickItems {
+                        override fun onClick(footballClub: FootballClub, position: Int) {
+                            startActivity<Detail>("data" to footballClub)
+                        }
+                    })
                 }
             }
         }

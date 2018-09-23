@@ -13,13 +13,18 @@
     </string-array>
 
     <array name="club_image">
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/img_barca</item>
+        <item>@drawable/img_madrid</item>
+        <item>@drawable/img_bayern</item>
+        <item>@drawable/img_city</item>
+        <item>@drawable/img_mu</item>
+        <item>@drawable/img_chelsea</item>
+        <item>@drawable/img_acm</item>
+        <item>@drawable/img_arsenal</item>
     </array>
+
+    <string name="long_lorem_ipsum">
+        Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.
+        \n\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat massa. Praesent sit amet lacinia augue, mollis tempor dolor.
+    </string>
 </resources>

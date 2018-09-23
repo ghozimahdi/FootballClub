@@ -18,6 +18,12 @@ import org.jetbrains.anko.*
 
 class AdapterFootballClub(var context: Context, var list: MutableList<FootballClub> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
 
+    private var listener: OnClickItems? = null
+
+    fun setOnClickListener(onClickItems: OnClickItems) {
+        this.listener = onClickItems
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballViewHolder {
         return FootballViewHolder(ItemList().createView(AnkoContext.create(parent.context, parent)))
     }
@@ -25,7 +31,10 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
     override fun onBindViewHolder(holder: FootballViewHolder, position: Int) {
         val football = list[position]
         holder.tvTitle.text = football.name
-        displayImageRound(context, holder.ivPhotoId, football.image!!)
+        holder.ivPhotoId.setImageResource(football.image!!)
+        holder.itemView.setOnClickListener {
+            listener!!.onClick(football, position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -38,10 +47,14 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
         var ivPhotoId: ImageView
 
         init {
-            tvTitle = itemView.find(R.id.img_football)
-            ivPhotoId = itemView.find(R.id.name_football)
+            tvTitle = itemView.find(R.id.name_football)
+            ivPhotoId = itemView.find(R.id.img_football)
         }
 
+    }
+
+    interface OnClickItems {
+        fun onClick(footballClub: FootballClub, position: Int)
     }
 
     fun displayImageRound(ctx: Context, img: ImageView, @DrawableRes drawable: Int) {
@@ -59,9 +72,8 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
     }
 
     class ItemList : AnkoComponent<ViewGroup> {
-
         override fun createView(ui: AnkoContext<ViewGroup>): View {
-            return with(ui){
+            return with(ui) {
                 linearLayout {
                     lparams(width = matchParent, height = wrapContent)
                     padding = dip(16)
@@ -69,7 +81,7 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
 
                     imageView {
                         id = R.id.img_football
-                    }.lparams{
+                    }.lparams {
                         height = dip(50)
                         width = dip(50)
                     }
@@ -77,14 +89,11 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
                     textView {
                         id = R.id.name_football
                         textSize = 16f
-                    }.lparams{
+                    }.lparams {
                         margin = dip(15)
                     }
-
                 }
             }
         }
-
-
     }
 }
