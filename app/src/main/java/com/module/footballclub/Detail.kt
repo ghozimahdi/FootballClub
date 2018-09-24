@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.View
+import com.bumptech.glide.Glide
 import com.module.footballclub.adapter.AdapterFootballClub
 import com.module.footballclub.model.FootballClub
 import org.jetbrains.anko.*
@@ -22,12 +23,14 @@ class Detail : AppCompatActivity() {
             return verticalLayout {
                 gravity = Gravity.CENTER_HORIZONTAL
                 padding = dip(16)
-                imageView(footballClub.image!!) {
+                var img = imageView {
                     id = R.id.img_football
                 }.lparams {
                     height = dip(80)
                     width = dip(80)
                 }
+
+                Glide.with(context).load(footballClub.image!!).into(img)
 
                 textView {
                     text = footballClub.name
