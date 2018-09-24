@@ -11,10 +11,17 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.module.footballclub.R
 import com.module.footballclub.model.FootballClub
 import org.jetbrains.anko.*
+import android.media.MediaScannerConnection
+import com.bumptech.glide.request.animation.GlideAnimation
+import com.bumptech.glide.request.target.SimpleTarget
+import java.io.FileOutputStream
+import java.io.IOException
+
 
 class AdapterFootballClub(var context: Context, var list: MutableList<FootballClub> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
 
@@ -31,7 +38,7 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
     override fun onBindViewHolder(holder: FootballViewHolder, position: Int) {
         val football = list[position]
         holder.tvTitle.text = football.name
-        holder.ivPhotoId.setImageResource(football.image!!)
+        Glide.with(context).load(football.image).into(holder.ivPhotoId)
         holder.itemView.setOnClickListener {
             listener!!.onClick(football, position)
         }
@@ -66,6 +73,19 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
                     img.setImageDrawable(circularBitmapDrawable)
                 }
             })
+        } catch (e: Exception) {
+        }
+
+    }
+
+    fun displayImageOriginal(ctx: Context, img: ImageView, url: String) {
+        try {
+            Glide.with(ctx).load(url)
+                    .crossFade()
+                    .override(600, 200)
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(img)
         } catch (e: Exception) {
         }
 

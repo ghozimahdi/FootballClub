@@ -23,6 +23,34 @@
         <item>@drawable/img_arsenal</item>
     </array>
 
+
+    <array name="url_img">
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_mu.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_acm.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_arsenal.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_barca.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_bayern.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_chelsea.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_city.png
+        </item>
+        <item>
+            https://raw.githubusercontent.com/dicodingacademy/Kotlin-Android-Developer-Expert/project1-hello-kotlin/app/src/main/res/drawable/img_madrid.png
+        </item>
+    </array>
+
     <string name="long_lorem_ipsum">
         Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.
         \n\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat massa. Praesent sit amet lacinia augue, mollis tempor dolor.

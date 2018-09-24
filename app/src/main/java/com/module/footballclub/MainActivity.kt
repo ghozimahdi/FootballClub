@@ -25,10 +25,11 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         val name = resources.getStringArray(R.array.club_name)
         val image = resources.obtainTypedArray(R.array.club_image)
+        val img_url = resources.getStringArray(R.array.url_img)
         items.clear()
         for (i in name.indices) {
             items.add(FootballClub(name[i],
-                    image.getResourceId(i, 0), resources.getString(R.string.long_lorem_ipsum)))
+                    image.getResourceId(i, 0), img_url[i], resources.getString(R.string.long_lorem_ipsum)))
         }
 
         //Recycle the typed array
