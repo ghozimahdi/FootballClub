@@ -1,29 +1,20 @@
 package com.module.footballclub.adapter
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.support.annotation.DrawableRes
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.module.footballclub.R
-import com.module.footballclub.model.FootballClub
+import com.module.footballclub.model.EventsItem
 import org.jetbrains.anko.*
-import android.media.MediaScannerConnection
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
-import java.io.FileOutputStream
-import java.io.IOException
 
 
-class AdapterFootballClub(var context: Context, var list: MutableList<FootballClub> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
+class AdapterFootballClub(var context: Context, var list: MutableList<EventsItem> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
 
     private var listener: OnClickItems? = null
 
@@ -31,16 +22,23 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
         this.listener = onClickItems
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballViewHolder {
-        return FootballViewHolder(ItemList().createView(AnkoContext.create(parent.context, parent)))
+    fun changeData(list: MutableList<EventsItem>) {
+        this.list.clear()
+        this.list.addAll(list)
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            FootballViewHolder(LayoutInflater.from(context).inflate(R.layout.item_event, parent, false))
 
     override fun onBindViewHolder(holder: FootballViewHolder, position: Int) {
         val football = list[position]
-        holder.tvTitle.text = football.name
-        Glide.with(context).load(football.image).into(holder.ivPhotoId)
+        holder.tvNama1.text = football.strHomeTeam
+        holder.scor1.text = football.intHomeScore
+        holder.scor2.text = football.intAwayScore
+        holder.tvNama2.text = football.strAwayTeam
+        holder.crt.text = football.dateEvent
         holder.itemView.setOnClickListener {
-            listener!!.onClick(football, position)
+            listener?.onClick(football, position)
         }
     }
 
@@ -49,71 +47,14 @@ class AdapterFootballClub(var context: Context, var list: MutableList<FootballCl
     }
 
     inner class FootballViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        var tvTitle: TextView
-        var ivPhotoId: ImageView
-
-        init {
-            tvTitle = itemView.find(R.id.name_football)
-            ivPhotoId = itemView.find(R.id.img_football)
-        }
-
+        var crt: TextView = itemView.findViewById(R.id.crt)
+        var tvNama1: TextView = itemView.findViewById(R.id.tvNama1)
+        var scor1: TextView = itemView.findViewById(R.id.scor1)
+        var scor2: TextView = itemView.findViewById(R.id.scor2)
+        var tvNama2: TextView = itemView.findViewById(R.id.tvNama2)
     }
 
     interface OnClickItems {
-        fun onClick(footballClub: FootballClub, position: Int)
-    }
-
-    fun displayImageRound(ctx: Context, img: ImageView, @DrawableRes drawable: Int) {
-        try {
-            Glide.with(ctx).load(drawable).asBitmap().centerCrop().into(object : BitmapImageViewTarget(img) {
-                override fun setResource(resource: Bitmap) {
-                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(ctx.resources, resource)
-                    circularBitmapDrawable.isCircular = true
-                    img.setImageDrawable(circularBitmapDrawable)
-                }
-            })
-        } catch (e: Exception) {
-        }
-
-    }
-
-    fun displayImageOriginal(ctx: Context, img: ImageView, url: String) {
-        try {
-            Glide.with(ctx).load(url)
-                    .crossFade()
-                    .override(600, 200)
-                    .fitCenter()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(img)
-        } catch (e: Exception) {
-        }
-
-    }
-
-    class ItemList : AnkoComponent<ViewGroup> {
-        override fun createView(ui: AnkoContext<ViewGroup>): View {
-            return with(ui) {
-                linearLayout {
-                    lparams(width = matchParent, height = wrapContent)
-                    padding = dip(16)
-                    orientation = LinearLayout.HORIZONTAL
-
-                    imageView {
-                        id = R.id.img_football
-                    }.lparams {
-                        height = dip(50)
-                        width = dip(50)
-                    }
-
-                    textView {
-                        id = R.id.name_football
-                        textSize = 16f
-                    }.lparams {
-                        margin = dip(15)
-                    }
-                }
-            }
-        }
+        fun onClick(footballClub: EventsItem, position: Int)
     }
 }

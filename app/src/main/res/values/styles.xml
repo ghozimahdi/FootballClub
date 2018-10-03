@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">
+        <!--<item name="fontFamily">@font/ttrounds_regular</item>-->
+    </style>
 </resources>
