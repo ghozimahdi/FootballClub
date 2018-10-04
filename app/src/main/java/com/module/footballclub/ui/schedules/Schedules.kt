@@ -60,7 +60,7 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
         bottomNav.setOnNavigationItemSelectedListener(MyBottomNavigationListener())
         BottomNavigationViewHelper.disableShiftMode(bottomNav)
 
-        val menuView = bottomNav.getChildAt(0) as BottomNavigationMenuView
+        /*val menuView = bottomNav.getChildAt(0) as BottomNavigationMenuView
         for (i in 0 until menuView.childCount) {
             val iconView = menuView.getChildAt(i).findViewById<View>(android.support.design.R.id.icon)
             val layoutParams = iconView.layoutParams
@@ -68,7 +68,7 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
             layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18f, displayMetrics).toInt()
             layoutParams.width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18f, displayMetrics).toInt()
             iconView.layoutParams = layoutParams
-        }
+        }*/
 
         swlayout.post {
             presenterSchedules?.getDataEventleague()

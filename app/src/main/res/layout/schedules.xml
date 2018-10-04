@@ -21,14 +21,10 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:attr/windowBackground"
-        android:foreground="?attr/selectableItemBackground"
+        android:layout_height="wrap_content"
         android:theme="@style/BottomNavigationViewStyle"
         app:itemBackground="@color/colorWhite"
         app:itemIconTint="@color/bottom_nav_color_selector"
         app:itemTextColor="@color/bottom_nav_color_selector"
-        app:menu="@menu/bottom_navigation"
-
-        />
+        app:menu="@menu/bottom_navigation" />
 </LinearLayout>
