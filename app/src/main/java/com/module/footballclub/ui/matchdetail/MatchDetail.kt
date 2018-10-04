@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.module.footballclub.R
 import com.module.footballclub.databinding.ActivityMatchDetailBinding
 import com.module.footballclub.model.EventsItem
@@ -19,6 +20,9 @@ class MatchDetail : AppCompatActivity(), MatchDetailResultCallback {
                 MatchDetailViewModelFactory(this))
                 .get(MatchDetailViewModel::class.java)
         binding.event = viewModel
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onSuccess() {
@@ -32,5 +36,14 @@ class MatchDetail : AppCompatActivity(), MatchDetailResultCallback {
     override fun loadEventItem(): EventsItem {
         var footballClub = intent.extras.getParcelable("data") as EventsItem
         return footballClub
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
