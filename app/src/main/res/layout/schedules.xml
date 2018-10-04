@@ -18,13 +18,11 @@
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNav"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/BottomNavigationViewStyle"
-        app:itemBackground="@color/colorWhite"
-        app:itemIconTint="@color/bottom_nav_color_selector"
-        app:itemTextColor="@color/bottom_nav_color_selector"
-        app:menu="@menu/bottom_navigation" />
+        android:background="@color/yellow_700"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
 </LinearLayout>

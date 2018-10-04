@@ -52,23 +52,12 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
         presenterSchedules = PresenterSchedules(this)
 
         adapterTab = SectionsPagerAdapter(supportFragmentManager)
-        adapterTab?.addFragment(fragmentPrev, "prev")
-        adapterTab?.addFragment(fragmentNext, "next")
+        adapterTab?.addFragment(fragmentPrev, "Prev Macth")
+        adapterTab?.addFragment(fragmentNext, "Next Match")
         main_container.adapter = adapterTab
         main_container.addOnPageChangeListener(ViewPagerSlideListener(adapterTab!!))
 
-        bottomNav.setOnNavigationItemSelectedListener(MyBottomNavigationListener())
-        BottomNavigationViewHelper.disableShiftMode(bottomNav)
-
-        /*val menuView = bottomNav.getChildAt(0) as BottomNavigationMenuView
-        for (i in 0 until menuView.childCount) {
-            val iconView = menuView.getChildAt(i).findViewById<View>(android.support.design.R.id.icon)
-            val layoutParams = iconView.layoutParams
-            val displayMetrics = resources.displayMetrics
-            layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18f, displayMetrics).toInt()
-            layoutParams.width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18f, displayMetrics).toInt()
-            iconView.layoutParams = layoutParams
-        }*/
+        tabs.setupWithViewPager(main_container)
 
         swlayout.post {
             presenterSchedules?.getDataEventleague()
@@ -104,20 +93,6 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
                     }
                 }
             }
-        }
-    }
-
-    inner class MyBottomNavigationListener : BottomNavigationView.OnNavigationItemSelectedListener {
-        override fun onNavigationItemSelected(item: MenuItem): Boolean {
-            when (item.itemId) {
-                R.id.prevMatch -> {
-                    main_container.currentItem = 0
-                }
-                R.id.nextMatch -> {
-                    main_container.currentItem = 1
-                }
-            }
-            return false
         }
     }
 }
