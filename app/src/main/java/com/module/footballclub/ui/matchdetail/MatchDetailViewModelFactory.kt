@@ -9,7 +9,7 @@ import android.arch.lifecycle.ViewModelProvider
  * No Tpln : 0857-4124-4919
  * Profesi : Android Developer
  */
-class MatchDetailViewModelFactory(var matchDetailResultCallback: MatchDetailResultCallback) : ViewModelProvider.NewInstanceFactory() {
+class MatchDetailViewModelFactory(private val matchDetailResultCallback: MatchDetailResultCallback) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return MatchDetailViewModel(matchDetailResultCallback) as T
     }

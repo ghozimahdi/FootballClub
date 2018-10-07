@@ -1,14 +1,8 @@
 package com.module.footballclub.ui.schedules
 
 import android.os.Bundle
-import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.TypedValue
-import android.view.MenuItem
-import android.view.View
-import com.module.footballclub.util.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.schedules.*
 import com.module.footballclub.*
 import com.module.footballclub.adapter.SectionsPagerAdapter
@@ -18,7 +12,7 @@ import com.module.footballclub.conn.ResponseError
 import com.module.footballclub.model.EventsItem
 
 
-class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
+class SchedulesActivity : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
     override fun doIfResultSuccess(lastData: MutableList<EventsItem>, nextData: MutableList<EventsItem>) {
         swlayout.isRefreshing = false
         fragmentPrev.changeData(lastData)
@@ -26,7 +20,7 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
     }
 
     override fun doGetData(url: String, query: Map<String, String>, result: OnResult) {
-        AppLoader.get(this@Schedules)
+        AppLoader.get(this@SchedulesActivity)
                 .getApiManager()
                 .doGet(url, query, ApiObserver(object : OnCallBack {
                     override fun succses(response: String) {
@@ -41,9 +35,9 @@ class Schedules : AppCompatActivity(), InterfaceContract.OnSchedulesActivity {
     }
 
     private var adapterTab: SectionsPagerAdapter? = null
-    var fragmentPrev = SchedulesFragment.newInstance(0)
-    var fragmentNext = SchedulesFragment.newInstance(1)
-    var presenterSchedules: PresenterSchedules? = null
+    private val fragmentPrev = SchedulesFragment.newInstance(0)
+    private val fragmentNext = SchedulesFragment.newInstance(1)
+    private var presenterSchedules: PresenterSchedules? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp"
-            tools:context=".ui.matchdetail.MatchDetail">
+            tools:context=".ui.matchdetail.MatchDetailActivity">
 
             <TextView
                 android:id="@+id/tvWaktu"

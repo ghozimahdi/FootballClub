@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.module.footballclub.adapter.AdapterFootballClub
 import com.module.footballclub.model.EventsItem
-import com.module.footballclub.ui.matchdetail.MatchDetail
+import com.module.footballclub.ui.matchdetail.MatchDetailActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
@@ -55,7 +55,7 @@ class SchedulesFragment : Fragment() {
                     adapter = listAdapter
                     listAdapter.setOnClickListener(object : AdapterFootballClub.OnClickItems {
                         override fun onClick(footballClub: EventsItem, position: Int) {
-                            startActivity<MatchDetail>("data" to footballClub)
+                            startActivity<MatchDetailActivity>("data" to footballClub)
                         }
                     })
                 }

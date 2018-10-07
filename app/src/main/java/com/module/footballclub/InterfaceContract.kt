@@ -1,9 +1,6 @@
 package com.module.footballclub
 
-import android.net.Uri
-import android.support.v4.app.Fragment
 import com.module.footballclub.model.EventsItem
-import okhttp3.RequestBody
 
 /**
  * Created by knalb on 28/09/18.
@@ -12,13 +9,9 @@ import okhttp3.RequestBody
  * Profesi : Android Developer Expert
  */
 interface InterfaceContract {
-    interface OnFragment {
+    interface OnFragment
 
-    }
-
-    interface OnActivity {
-
-    }
+    interface OnActivity
 
     interface OnSchedulesActivity {
         fun doGetData(url: String, query: Map<String, String>, result: OnResult)

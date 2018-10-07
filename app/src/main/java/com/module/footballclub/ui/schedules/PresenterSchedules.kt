@@ -22,14 +22,14 @@ class PresenterSchedules(private val onView: InterfaceContract.OnSchedulesActivi
     var nextData: MutableList<EventsItem> = ArrayList()
 
     override fun getDataEventleague() {
-        var urlLast = Uri.parse(BuildConfig.BASE_URL).buildUpon()
+        val urlLast = Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath(BuildConfig.API)
                 .appendPath(BuildConfig.TSDB_API_KEY)
                 .appendPath(BuildConfig.EVENTLAST)
                 .build()
                 .toString()
 
-        var urlNext = Uri.parse(BuildConfig.BASE_URL).buildUpon()
+        val urlNext = Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath(BuildConfig.API)
                 .appendPath(BuildConfig.TSDB_API_KEY)
                 .appendPath(BuildConfig.EVENTNEXT)
@@ -43,12 +43,12 @@ class PresenterSchedules(private val onView: InterfaceContract.OnSchedulesActivi
 
         onView.doGetData(urlLast, paramsLast, object : OnResult {
             override fun onSuccess(response: String?) {
-                var msg = Gson().fromJson(response, MsgEventLeague::class.java)
+                val msg = Gson().fromJson(response, MsgEventLeague::class.java)
                 lastData = msg.events as MutableList<EventsItem>
 
                 onView.doGetData(urlNext, paramsNext, object : OnResult {
                     override fun onSuccess(response: String?) {
-                        var msg = Gson().fromJson(response, MsgEventLeague::class.java)
+                        val msg = Gson().fromJson(response, MsgEventLeague::class.java)
                         nextData = msg.events as MutableList<EventsItem>
                         onView.doIfResultSuccess(lastData, nextData)
 
