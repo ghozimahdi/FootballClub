@@ -1,7 +1,6 @@
 package com.module.footballclub.ui.matchdetail
 
 import android.arch.lifecycle.ViewModel
-import com.module.footballclub.model.EventsItem
 import android.databinding.ObservableField
 import com.google.gson.Gson
 import com.module.footballclub.AppLoader
@@ -10,6 +9,7 @@ import com.module.footballclub.conn.ApiObserver
 import com.module.footballclub.conn.MsgErrorBody
 import com.module.footballclub.conn.OnCallBack
 import com.module.footballclub.conn.ResponseError
+import com.module.footballclub.model.EventsItem
 import com.module.footballclub.model.MsgTeamDetail
 
 
@@ -20,9 +20,9 @@ import com.module.footballclub.model.MsgTeamDetail
  * Profesi : Android Developer
  */
 class MatchDetailViewModel(matchDetailResultCallback: MatchDetailResultCallback) : ViewModel() {
-    private val footballClub: EventsItem = matchDetailResultCallback.loadEventItem()
-    private val urlImageHome: ObservableField<String> = ObservableField()
-    private val urlImageAway: ObservableField<String> = ObservableField()
+    val footballClub: EventsItem = matchDetailResultCallback.loadEventItem()
+    val urlImageHome: ObservableField<String> = ObservableField()
+    val urlImageAway: ObservableField<String> = ObservableField()
     private val paramsHome = HashMap<String, String>()
     private val paramsAway = HashMap<String, String>()
 
