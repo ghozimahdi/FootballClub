@@ -16,7 +16,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailResultCallback {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_match_detail)
         val viewModel = ViewModelProviders.of(this,
-                MatchDetailViewModelFactory(this))
+                MatchDetailViewModelProviderFactory(this))
                 .get(MatchDetailViewModel::class.java)
         binding.event = viewModel
 
