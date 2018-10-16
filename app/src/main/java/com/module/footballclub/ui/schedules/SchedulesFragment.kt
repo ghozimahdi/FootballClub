@@ -12,6 +12,7 @@ import com.module.footballclub.ui.matchdetail.MatchDetailActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,7 +43,9 @@ class SchedulesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        adapterEvent = AdapterFootballClub(activity!!)
+        adapterEvent = AdapterFootballClub(activity!!) {
+            startActivity<MatchDetailActivity>("data" to it)
+        }
         return FragmentUi<Fragment>(adapterEvent!!).createView(AnkoContext.create(ctx, this))
     }
 
@@ -53,11 +56,6 @@ class SchedulesFragment : Fragment() {
                     lparams(width = matchParent, height = wrapContent)
                     layoutManager = LinearLayoutManager(ctx)
                     adapter = listAdapter
-                    listAdapter.setOnClickListener(object : AdapterFootballClub.OnClickItems {
-                        override fun onClick(footballClub: EventsItem, position: Int) {
-                            startActivity<MatchDetailActivity>("data" to footballClub)
-                        }
-                    })
                 }
             }
         }

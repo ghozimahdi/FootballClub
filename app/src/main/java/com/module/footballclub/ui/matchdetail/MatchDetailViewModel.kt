@@ -25,6 +25,7 @@ class MatchDetailViewModel(matchDetailResultCallback: MatchDetailResultCallback)
     val urlImageAway: ObservableField<String> = ObservableField()
     private val paramsHome = HashMap<String, String>()
     private val paramsAway = HashMap<String, String>()
+    private var isFavorite: Boolean = false
 
     init {
         paramsHome.put("id", footballClub.idHomeTeam.toString())

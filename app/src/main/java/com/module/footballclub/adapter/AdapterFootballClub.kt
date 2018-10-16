@@ -10,13 +10,8 @@ import com.module.footballclub.R
 import com.module.footballclub.model.EventsItem
 
 
-class AdapterFootballClub(var context: Context, var list: MutableList<EventsItem> = arrayListOf()) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
+class AdapterFootballClub(var context: Context, var list: MutableList<EventsItem> = arrayListOf(), private val listener: (EventsItem) -> Unit) : RecyclerView.Adapter<AdapterFootballClub.FootballViewHolder>() {
 
-    private var listener: OnClickItems? = null
-
-    fun setOnClickListener(onClickItems: OnClickItems) {
-        this.listener = onClickItems
-    }
 
     fun changeData(list: MutableList<EventsItem>) {
         this.list.clear()
@@ -27,15 +22,7 @@ class AdapterFootballClub(var context: Context, var list: MutableList<EventsItem
             FootballViewHolder(LayoutInflater.from(context).inflate(R.layout.item_event, parent, false))
 
     override fun onBindViewHolder(holder: FootballViewHolder, position: Int) {
-        val football = list[position]
-        holder.tvNama1.text = football.strHomeTeam
-        holder.scor1.text = football.intHomeScore
-        holder.scor2.text = football.intAwayScore
-        holder.tvNama2.text = football.strAwayTeam
-        holder.crt.text = football.dateEvent
-        holder.itemView.setOnClickListener {
-            listener?.onClick(football, position)
-        }
+        holder.bindItem(list[position], listener)
     }
 
     override fun getItemCount(): Int {
@@ -48,9 +35,16 @@ class AdapterFootballClub(var context: Context, var list: MutableList<EventsItem
         var scor1: TextView = itemView.findViewById(R.id.scor1)
         var scor2: TextView = itemView.findViewById(R.id.scor2)
         var tvNama2: TextView = itemView.findViewById(R.id.tvNama2)
-    }
 
-    interface OnClickItems {
-        fun onClick(footballClub: EventsItem, position: Int)
+        fun bindItem(football: EventsItem, listener: (EventsItem) -> Unit) {
+            tvNama1.text = football.strHomeTeam
+            scor1.text = football.intHomeScore
+            scor2.text = football.intAwayScore
+            tvNama2.text = football.strAwayTeam
+            crt.text = football.dateEvent
+            itemView.setOnClickListener {
+                listener(football)
+            }
+        }
     }
 }
